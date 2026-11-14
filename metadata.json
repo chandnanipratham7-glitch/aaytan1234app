@@ -1,0 +1,8 @@
+{
+  "name": "AAYTAN",
+  "description": "A unified, responsive education management platform for seamless real-time synchronization between teachers and students.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

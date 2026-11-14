@@ -1,0 +1,198 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User profile with role details for teachers and students",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "role": { "type": "string", "enum": ["STUDENT", "TEACHER"] },
+        "fullName": { "type": "string" },
+        "email": { "type": "string" },
+        "facultyId": { "type": "string" },
+        "assignedSubjects": { "type": "array" },
+        "handledBatches": { "type": "array" },
+        "rollNumber": { "type": "string" },
+        "standardClass": { "type": "string" },
+        "contactNumber": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "role", "fullName", "email"]
+    },
+    "StudyMaterial": {
+      "title": "Study Material",
+      "description": "Uploaded educational worksheets, notes, and question banks",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "targetClass": { "type": "string" },
+        "subject": { "type": "string" },
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "fileName": { "type": "string" },
+        "fileType": { "type": "string" },
+        "fileSize": { "type": "string" },
+        "isDraft": { "type": "boolean" },
+        "teacherName": { "type": "string" },
+        "teacherId": { "type": "string" },
+        "uploadedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "targetClass", "subject", "category", "fileName"]
+    },
+    "Homework": {
+      "title": "Homework",
+      "description": "Assigned homework task for a batch",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "subject": { "type": "string" },
+        "targetClass": { "type": "string" },
+        "dueDate": { "type": "string" },
+        "totalMarks": { "type": "integer" },
+        "instructions": { "type": "string" },
+        "attachmentName": { "type": "string" },
+        "teacherName": { "type": "string" },
+        "teacherId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "subject", "targetClass", "dueDate", "totalMarks"]
+    },
+    "Submission": {
+      "title": "Submission",
+      "description": "Student homework submission answer and feedback",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "homeworkId": { "type": "string" },
+        "homeworkTitle": { "type": "string" },
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "rollNumber": { "type": "string" },
+        "studentClass": { "type": "string" },
+        "answerText": { "type": "string" },
+        "attachmentName": { "type": "string" },
+        "marksAwarded": { "type": "integer" },
+        "feedbackRemarks": { "type": "string" },
+        "isGraded": { "type": "boolean" },
+        "submittedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "homeworkId", "studentId", "studentName", "studentClass"]
+    },
+    "AttendanceRecord": {
+      "title": "Attendance Record",
+      "description": "Daily student attendance status entry",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "date": { "type": "string" },
+        "targetClass": { "type": "string" },
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "rollNumber": { "type": "string" },
+        "status": { "type": "string", "enum": ["PRESENT", "ABSENT", "LATE"] },
+        "markedByTeacher": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "date", "targetClass", "studentId", "status"]
+    },
+    "UnitTest": {
+      "title": "Unit Test",
+      "description": "Published unit test entry",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "testName": { "type": "string" },
+        "subject": { "type": "string" },
+        "targetClass": { "type": "string" },
+        "maxMarks": { "type": "integer" },
+        "date": { "type": "string" },
+        "isPublished": { "type": "boolean" },
+        "createdByTeacher": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "testName", "subject", "targetClass", "maxMarks"]
+    },
+    "TestScore": {
+      "title": "Test Score",
+      "description": "Graded test score for an enrolled student",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "testId": { "type": "string" },
+        "testName": { "type": "string" },
+        "subject": { "type": "string" },
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "rollNumber": { "type": "string" },
+        "studentClass": { "type": "string" },
+        "marksObtained": { "type": "number" },
+        "maxMarks": { "type": "integer" },
+        "percentage": { "type": "number" },
+        "grade": { "type": "string" },
+        "teacherFeedback": { "type": "string" },
+        "isPublished": { "type": "boolean" }
+      },
+      "required": ["userId", "testId", "studentId", "marksObtained", "maxMarks"]
+    },
+    "Announcement": {
+      "title": "Announcement",
+      "description": "Broadcast notice for students and batches",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "targetAudience": { "type": "string" },
+        "priority": { "type": "string", "enum": ["NORMAL", "IMPORTANT", "URGENT"] },
+        "authorName": { "type": "string" },
+        "authorFacultyId": { "type": "string" },
+        "postedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "content", "targetAudience", "priority"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Registered user accounts for faculty and students"
+    },
+    "/materials/{materialId}": {
+      "schema": { "$ref": "#/entities/StudyMaterial" },
+      "description": "Worksheets and study documents"
+    },
+    "/homeworks/{homeworkId}": {
+      "schema": { "$ref": "#/entities/Homework" },
+      "description": "Assigned homework tasks"
+    },
+    "/submissions/{submissionId}": {
+      "schema": { "$ref": "#/entities/Submission" },
+      "description": "Student homework solution submissions"
+    },
+    "/attendance/{attendanceId}": {
+      "schema": { "$ref": "#/entities/AttendanceRecord" },
+      "description": "Daily attendance registers"
+    },
+    "/unitTests/{testId}": {
+      "schema": { "$ref": "#/entities/UnitTest" },
+      "description": "Unit test schedules and definitions"
+    },
+    "/testScores/{scoreId}": {
+      "schema": { "$ref": "#/entities/TestScore" },
+      "description": "Student unit test scorecards"
+    },
+    "/announcements/{announcementId}": {
+      "schema": { "$ref": "#/entities/Announcement" },
+      "description": "Broadcast announcements"
+    }
+  }
+}
